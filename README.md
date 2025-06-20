@@ -1,10 +1,8 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
 
-# List of forbidden words
 PALABRAS_PROHIBIDAS = ['puta', 'niños', 'cp']
 
-# Your Telegram user ID
 ID_ADMIN = 7204903761
 
 async def monitorear(update: Update, context: ContextTypes.DEFAULT_TYPE):
