@@ -16,8 +16,3 @@ if __name__ == '__main__':
     app = ApplicationBuilder().token("7687915645:AAHDgKrBJXOoJp3n7QAuheLt-hdInvPMWpQ").build()
     app.add_handler(MessageHandler(filters.TEXT & filters.ChatType.CHANNEL, monitorear))
     app.run_polling()
-
-
-
-
-    python-telegram-bot==20.6
