@@ -1,20 +1,7 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
+from telegram.ext import CommandHandler, ContextTypes
 
-# List of forbidden words
-PALABRAS_PROHIBIDAS = ['puta', 'niños', 'cp']
+async def obtener_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(f"ID del grupo: `{update.message.chat_id}`", parse_mode='Markdown')
 
-# Your Telegram user ID
-ID_ADMIN = 7204903761
-
-async def monitorear(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message and update.message.text:
-        mensaje = update.message.text.lower()
-        if any(p in mensaje for p in PALABRAS_PROHIBIDAS):
-            alerta = f"🚨 Palabra prohibida detectada:\n\n{mensaje}"
-            await context.bot.send_message(chat_id=ID_ADMIN, text=alerta)
-
-if __name__ == '__main__':
-    app = ApplicationBuilder().token("7687915645:AAHDgKrBJXOoJp3n7QAuheLt-hdInvPMWpQ").build()
-    app.add_handler(MessageHandler(filters.TEXT & filters.ChatType.CHANNEL, monitorear))
-    app.run_polling()
+app.add_handler(CommandHandler("id", obtener_id))
